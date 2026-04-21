@@ -118,18 +118,30 @@ public class Pruebas {
         assertTrue(planta.calcularSalarioNeto() > 1200000f);
     }
 
-    @Test
-    public void verificarTemporalMasDe100HorasCasoDiferente() {
-        EmpleadoTemporal temporal = new EmpleadoTemporal(
-                "Diego", "t3", 26,
-                900000f, CategoriaEmpleado.JUNIOR,
-                4f, 4f,
-                120, 30000f
-        );
+@Test
+public void verificarTemporalesMasDe100Horas() {
+    Empresa empresa = new Empresa();
 
-        assertTrue(temporal.calcularSalarioBruto() > 0);
-    }
+    EmpleadoTemporal t1 = new EmpleadoTemporal(
+            "Luis", "t1", 25,
+            900000f, CategoriaEmpleado.JUNIOR,
+            4f, 4f,
+            120, 30000f
+    );
 
+    EmpleadoTemporal t2 = new EmpleadoTemporal(
+            "Carlos", "t2", 30,
+            900000f, CategoriaEmpleado.JUNIOR,
+            4f, 4f,
+            80, 30000f
+    );
+
+    empresa.agregarEmpleado(t1);
+    empresa.agregarEmpleado(t2);
+
+    assertEquals(1, empresa.empleadosTemporalesMasDe100Horas().size());
+    assertEquals("t1", empresa.empleadosTemporalesMasDe100Horas().get(0).getDocumento());
+}
     @Test
     public void verificarSalarioTemporalMayorCeroCasoDiferente() {
         EmpleadoTemporal temporal = new EmpleadoTemporal(
