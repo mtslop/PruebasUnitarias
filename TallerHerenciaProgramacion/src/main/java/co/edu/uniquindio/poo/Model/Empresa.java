@@ -57,6 +57,20 @@ public class Empresa {
         System.out.println("Nomina total: " + total);
     }
 
+    public List<EmpleadoTemporal> empleadosTemporalesMasDe100Horas() {
+    List<EmpleadoTemporal> lista = new ArrayList<>();
+
+    for (Empleado empleado : empleados) {
+        if (empleado instanceof EmpleadoTemporal temporal) {
+            if (temporal.diasTrabajados > 100) {
+                lista.add(temporal);
+            }
+        }
+    }
+
+    return lista;
+}
+
     public void mostrarResumenesPago() {
         if (empleados.isEmpty()) {
             System.out.println("No hay empleados registrados");
